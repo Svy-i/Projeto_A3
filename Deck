@@ -1,0 +1,6 @@
+
+class Deck {
+  private int id_Deck;
+  private int id_Carta; //foreign key
+  private String Deck_Utilizado;
+}
