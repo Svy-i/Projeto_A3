@@ -1,0 +1,125 @@
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.Random;
+class Cartas {
+  Random random = new Random();
+  private int indiceAleatorio;
+  private int id_Carta;
+  private String Nome_Carta;
+  private String Tipo;
+  private int Custo;
+  private int Dano;
+  private float Especial;
+  // tentar colocar tudo junto no mesmo Array com nome, tipo, efeito e id que representa cada um. Ai seleciona usando o número
+  //aleatorio
+  private static ArrayList <Cartas> listaCartas = new ArrayList <Cartas>();
+  
+  public Cartas(){
+  }
+  
+  public Cartas(int indiceAleatorio){
+    this.indiceAleatorio = indiceAleatorio;
+  }
+  public static void armazenarNomes(){
+    Random random = new Random();
+  
+    String []  NomeCarta = new String [11];
+
+    NomeCarta[0] = "Corte";
+    NomeCarta[1] = "Porrada";
+    NomeCarta[2] = "Raiva";
+    NomeCarta[3] = "Defender";
+    NomeCarta[4] = "Sanguinário";
+    NomeCarta[5] = "Voadora";
+    NomeCarta[6] = "Separar Alma";
+    NomeCarta[7] = "Trance de Batalha";
+    NomeCarta[8] = "Flexionar";
+    NomeCarta[9] = "Forma Demoníaca";
+    NomeCarta[10] = "Escudo de Fogo";
+    
+    System.out.println("Nomes das Cartas:");
+    for (int i = 0; i < 11; i++) {
+      int indiceAleatorio = random.nextInt(NomeCarta.length);
+      String valorAleatorio = NomeCarta[indiceAleatorio];
+      System.out.print(valorAleatorio + " ");
+      Cartas escolhaCartas = new Cartas(indiceAleatorio);
+      listaCartas.add(escolhaCartas);
+        }
+    
+  }
+  public static void armazenarTipos(){
+    Random random = new Random();
+    String []  TipoCarta = new String [11];
+
+    TipoCarta[0] = "Ataque";
+    TipoCarta[1] = "Ataque";
+    TipoCarta[2] = "Ataque";
+    TipoCarta[3] = "Defesa";
+    TipoCarta[4] = "Ataque";
+    TipoCarta[5] = "Ataque";
+    TipoCarta[6] = "Ataque";
+    TipoCarta[7] = "Habilidade";
+    TipoCarta[8] = "Habilidade";
+    TipoCarta[9] = "Poder";
+    TipoCarta[10] = "Defesa";
+    
+    System.out.println("\nTipos das Cartas:");
+        for (int i = 0; i < 11; i++) {
+          int indiceAleatorio = listaCartas.get(i);
+          String valorAleatorio = TipoCarta[indiceAleatorio];
+          System.out.print(valorAleatorio + " ");
+        }
+  }
+  public static void armazenarCusto(){
+    Random random = new Random();
+    int []  CustoCarta = new int [11];
+
+    CustoCarta[0] = 1;
+    CustoCarta[1] = 2;
+    CustoCarta[2] = 0;
+    CustoCarta[3] = 1;
+    CustoCarta[4] = 2;
+    CustoCarta[5] = 1;
+    CustoCarta[6] = 2;
+    CustoCarta[7] = 0;
+    CustoCarta[8] = 0;
+    CustoCarta[9] = 3;
+    CustoCarta[10] = 2;
+    
+    System.out.println("\nCusto das Cartas:");
+    int indiceAleatorio = random.nextInt(CustoCarta.length);
+        for (int custo : CustoCarta) {
+            System.out.print(custo + " ");
+        }
+  }
+  
+  public static void adicionar_Cartas(){
+    
+  }
+  
+  public static void comprar_Cartas(){
+    
+  }
+  
+  public static void jogar_Cartas(){
+    
+  }
+}
+/*private static ArrayList <Personagens> listaNomeCartas = new ArrayList<Personagens>();
+  
+  private static ArrayList <Personagens> listaEfeitoCartas = new ArrayList<Personagens>();
+  
+  public Cartas(){
+  }
+  
+  public Cartas(String Nome_Carta, String Tipo){
+    this.Nome_Carta = Nome_Carta;
+    this.Tipo = Tipo;
+  }
+  
+  public void adicionarString(String Nome_Carta) {
+        Cartas str = new Cartas(Nome_Carta, Tipo);
+        listaNomeCartas.add(str);
+    }
+    
+    */
