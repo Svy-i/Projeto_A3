@@ -1,0 +1,36 @@
+import java.util.ArrayList;
+import java.util.UUID;
+import java.util.Scanner;
+class Jogadores {
+  private int idJogador;
+  private String Nome_Jogador;
+  private int Partidas_Concluidas;
+  
+  private static ArrayList <Jogadores> listaJogadores = new ArrayList<Jogadores>();
+  public Jogadores(){
+    
+  }
+  public Jogadores(String Nome_Jogador, int Partidas_Concluidas){
+    this.Nome_Jogador = Nome_Jogador;
+    this.Partidas_Concluidas = Partidas_Concluidas;
+  }
+  
+  public Jogadores(String Nome_Jogador){
+    this.Nome_Jogador = Nome_Jogador;
+  }
+  
+  public static void criarJogador(){
+    Scanner entrada = new Scanner(System.in);
+    System.out.println("Insira um nome de usuário");
+    String Nome_Jogador = entrada.nextLine();
+    Jogadores novoJogador = new Jogadores(Nome_Jogador);
+    
+    listaJogadores.add(novoJogador);
+    System.out.println("Jogador cadastrado com sucesso!");
+    
+    System.out.println("Jogadores cadastrados:");
+    System.out.println(listaJogadores);
+    System.out.print("\n\n\n");
+    
+  }
+}
