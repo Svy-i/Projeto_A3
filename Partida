@@ -1,0 +1,12 @@
+import java.util.Scanner;
+
+class Partida {
+  private int id_Partida;
+  private int resultadoFinal;
+  private int id_Deck;
+  private int idPersonagem; //foreign key
+  private int idJogador; //foreign key
+  private int idCarta; //foreign key
+  private int idInimigo; //foreign key
+  
+}
