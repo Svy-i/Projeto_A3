@@ -1,0 +1,25 @@
+import java.util.Scanner;
+import java.util.Random;
+public class Main {
+  public static void main(String[] args) {
+    Scanner entrada = new Scanner(System.in);
+    Random random = new Random();
+    int opcao = 0;
+    Jogadores jogadores = new Jogadores();
+    Personagens personagens = new Personagens();
+    Cartas cartas = new Cartas();
+    do{
+      Jogadores.criarJogador();
+      
+      Personagens.escolherPersonagem();
+      
+      Cartas.armazenarNomes();
+      Cartas.armazenarTipos();
+      Cartas.armazenarCusto();
+      
+      System.out.print("Se o jogo terminar pressione 1: ");
+      opcao = entrada.nextInt();
+      System.out.print("\n\n");
+    } while(opcao != 1);
+  }
+}
