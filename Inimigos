@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 class Inimigos {
-  private int id_Comportamento;
+  private int id_Inimigo;
   private String Nome_Inimigo;
   private int Vida_Inimigo;
   private int Ataque;
