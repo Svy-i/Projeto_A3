@@ -1,0 +1,134 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+class Baralho {
+    Random random = new Random();
+    Personagem personagem = new Personagem();
+    private int idBaralho;
+    private String nome;
+    private int custo;
+    private String descricao;
+    private List<Carta> deck;
+    private List<Carta> maos;
+
+    private ArrayList<Baralho> deckCompleto  = new ArrayList<Baralho>();
+
+    // Construtor
+    public Baralho(){
+    }
+    public Baralho(String nome, int custo, String descricao) {
+        this.idBaralho = deckCompleto.size();
+        this.nome = nome;
+        this.custo = custo;
+        this.descricao = descricao;
+        this.deck = new ArrayList<>();
+        this.maos = new ArrayList<>();
+        inicializarDeck();
+    }
+
+    // Getters
+    public String getNome() {
+        return nome;
+    }
+
+    public int getCusto() {
+        return custo;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public List getMaos(){
+        return maos;
+    }
+
+    public void deck_Utilizado() {
+        // Lista de cartas agora deve ser de tipo Carta
+
+        int escolha = personagem.getEscolha();
+
+        // Criando as cartas com seus nomes e tipos
+        if (escolha == 1) {
+            deck.add(new CartaAtaque("Corte", 1, 6, "Cause 6 de dano"));
+            deck.add(new CartaAtaque("Corte", 1, 6, "Cause 6 de dano"));
+            deck.add(new CartaAtaque("Corte", 1, 6, "Cause 6 de dano"));
+            deck.add(new CartaAtaque("Corte", 1, 6, "Cause 6 de dano"));
+            deck.add(new CartaAtaque("Porrada", 2, 8, "Cause 8 de dano e aumente em 50% o dano recebido pelo alvo"));
+            deck.add(new CartaAtaque("Golpe Pesado", 2, 12, "Causa 12 de dano"));
+            deck.add(new CartaAtaque("Desafiar", 0, 14, "Só pode ser jogada caso tenha apenas cartas de ataque na mão. Cause 14 de dano"));
+            deck.add(new CartaDefesa("Defender", 1, 5, "Ganhe 5 de defesa neste turno"));
+            deck.add(new CartaDefesa("Defender", 1, 5, "Ganhe 5 de defesa neste turno"));
+            deck.add(new CartaDefesa("Defender", 1, 5, "Ganhe 5 de defesa neste turno"));
+            deck.add(new CartaDefesa("Defender", 1, 5, "Ganhe 5 de defesa neste turno"));
+            deck.add(new CartaAtaque("Sanguinário", 2, 20, "Cause 20 de dano. Sempre que jogar essa carta ela perderá 2 de dano"));
+            deck.add(new CartaAtaque("Voadora", 1, 5, "Cause 5 de dano. Se o inimigo recebeu dano neste turno, ganhe 1 de energia e compre uma carta."));
+            deck.add(new CartaAtaque("Separar Alma", 2, 12, "Cause 12 de dano. Recupere 4 de vida."));
+            deck.add(new CartaAtaque("Separar Alma", 2, 12, "Cause 12 de dano. Recupere 4 de vida."));
+            deck.add(new CartaAtaque("Separar Alma", 2, 12, "Cause 12 de dano. Recupere 4 de vida."));
+            deck.add(new CartaCompra("Trance de Batalha", 0, 2, "Compre 2 cartas."));
+            deck.add(new CartaAtaque("Flexionar", 0, 0, "Ganhe +2 de ataque neste turno."));
+            deck.add(new CartaAtaque("Forma Demoníaca", 3, 0, "Ganhe +2 de ataque no fim de cada turno."));
+            deck.add(new CartaDefesa("Escudo de Fogo", 2, 12, "Ganhe 12 de defesa. Cada vez que for atacado no próximo turno, o inimigo receberá 3 de dano"));
+            deck.add(new CartaDefesa("Escudo de Fogo", 2, 12, "Ganhe 12 de defesa. Cada vez que for atacado no próximo turno, o inimigo receberá 3 de dano"));
+        } else if (escolha == 2) {
+            // Implementar a lógica para o caso 2, se necessário
+            deck.add(new CartaAtaque("Facada", 1, 6, "Causa 6 de dano"));
+            deck.add(new CartaAtaque("Facada", 1, 6, "Causa 6 de dano"));
+            deck.add(new CartaAtaque("Facada", 1, 6, "Causa 6 de dano"));
+            deck.add(new CartaAtaque("Facada", 1, 6, "Causa 6 de dano"));
+            deck.add(new CartaDefesa("Desvanecer", 1, 5, "Bloqueia 5 de dano"));
+            deck.add(new CartaDefesa("Desvanecer", 1, 5, "Bloqueia 5 de dano"));
+            deck.add(new CartaDefesa("Desvanecer", 1, 5, "Bloqueia 5 de dano"));
+            deck.add(new CartaDefesa("Desvanecer", 1, 5, "Bloqueia 5 de dano"));
+            deck.add(new CartaAtaque("Corte sanguinário", 2, 12, "Causa 8 de dano, deixe o alvo sangrando por 2 turnos"));
+        }
+
+        // Imprimindo a lista de cartas
+        for (int i = 0; i < deck.size(); i++) {
+            System.out.println(deck.get(i).nome_Carta + "\nCusto " + deck.get(i).custo + ".\n" + deck.get(i).descricao + "\n\n");
+        }
+    }
+
+    public void inicializarDeck() {
+        int escolha = personagem.getEscolha();
+
+        // Inicializando o deck do jogador com algumas cartas de exemplo
+        if (escolha == 1) {
+            deck.add(new CartaAtaque("Golpe Rápido", 1, 6, "Causa 6 de dano"));
+            deck.add(new CartaDefesa("Escudo de Ferro", 1, 5, "Bloqueia 5 de dano"));
+            deck.add(new CartaAtaque("Golpe Pesado", 2, 12, "Causa 12 de dano"));
+        } else if (escolha == 2){
+            deck.add(new CartaAtaque("Facada", 1, 6, "Causa 6 de dano"));
+            deck.add(new CartaDefesa("Desvanecer", 1, 5, "Bloqueia 5 de dano"));
+            deck.add(new CartaAtaque("Corte sanguinário", 2, 12, "Causa 8 de dano, deixe o alvo sangrando por 2 turnos"));
+        } else {
+            System.out.println("Escolha inválida!");
+        }
+    }
+
+    public void embaralharDeck() {
+        int i = 0;
+        // Embaralha as cartas do deck
+        // (Simplesmente adicionando as cartas ao deck para simplificação)
+        maos.clear();
+        for (; i < 4; i++){
+            maos.add(deck.get(random.nextInt(20)));  // Pegando 4 cartas como exemplo
+        }
+    }
+
+    int energia = personagem.getEnergia();
+
+    public void usarCarta(int indiceCarta, Inimigo inimigo) {
+        if (energia >= maos.get(indiceCarta).custo) {
+            energia -= maos.get(indiceCarta).custo;
+            maos.get(indiceCarta).usar(this, inimigo);
+        } else {
+            System.out.println("Energia insuficiente para usar a carta.");
+        }
+    }
+    public void receberDefesa(int defesa) {
+        personagem.adicionarDefesa(defesa);
+    }
+}
