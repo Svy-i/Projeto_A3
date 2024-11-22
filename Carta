@@ -1,0 +1,66 @@
+// Classe base para uma carta
+
+abstract class Carta{
+    String nome_Carta;
+    int custo;  // Custo em energia
+    String descricao;
+
+    // Construtor
+    public Carta(String nome, int custo, String descricao){
+        this.nome_Carta = nome;
+        this.custo = custo;
+        this.descricao = descricao;
+    }
+
+    // Método abstrato para a ação da carta
+    public abstract void usar(Baralho deck, Inimigo inimigo);
+}
+
+// Carta de Ataque
+class CartaAtaque extends Carta{
+    int dano;
+
+    public CartaAtaque(String nome, int custo, int dano, String descricao){
+        super(nome, custo, descricao);
+        this.dano = dano;
+    }
+
+    @Override
+    public void usar(Baralho deck, Inimigo inimigo){
+        Personagem personagem = new Personagem();
+        personagem.getNome();
+        System.out.println(" usa " + nome_Carta + " e causa " + dano + " de dano ao inimigo!");
+        inimigo.receberDano(dano);
+    }
+}
+
+// Carta de Defesa
+class CartaDefesa extends Carta{
+    int defesa;
+
+    public CartaDefesa(String nome, int custo, int defesa, String descricao){
+        super(nome, custo, descricao);
+        this.defesa = defesa;
+    }
+
+    @Override
+    public void usar(Baralho deck, Inimigo inimigo){
+        System.out.println("Usa " + nome_Carta + " e ganha " + defesa + " de defesa!");
+        deck.receberDefesa(defesa);
+    }
+}
+
+class CartaCompra extends Carta{
+    int compra;
+
+
+    public CartaCompra(String nome, int custo, int compra, String descricao){
+        super(nome, custo, descricao);
+    }
+
+    @Override
+    public void usar(Baralho deck, Inimigo inimigo){
+        deck.getMaos().add(deck.get(compra)
+        System.out.println("Usa " + nome_Carta + " e compra " +);
+    }
+}
