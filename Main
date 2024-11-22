@@ -1,25 +1,36 @@
-import java.util.Scanner;
-import java.util.Random;
-public class Main {
-  public static void main(String[] args) {
-    Scanner entrada = new Scanner(System.in);
-    Random random = new Random();
-    int opcao = 0;
-    Jogadores jogadores = new Jogadores();
-    Personagens personagens = new Personagens();
-    Cartas cartas = new Cartas();
-    do{
-      Jogadores.criarJogador();
-      
-      Personagens.escolherPersonagem();
-      
-      Cartas.armazenarNomes();
-      Cartas.armazenarTipos();
-      Cartas.armazenarCusto();
-      
-      System.out.print("Se o jogo terminar pressione 1: ");
-      opcao = entrada.nextInt();
-      System.out.print("\n\n");
-    } while(opcao != 1);
-  }
+class Main {
+    public static void main(String[] args) {
+        Personagem personagem = new Personagem();
+        Inimigo inimigo = new Inimigo();
+        Jogador jogador = new Jogador();
+        Baralho deck = new Baralho();
+
+        //Criar perfil de jogador
+        jogador.criarJogador();
+
+        //Selecionar personagem
+        personagem.escolherPersonagem();
+
+        //Inimigo inimigoBandido = new Inimigo("Bandido", 50);
+        //Inimigo inimigoCogumelo = new Inimigo("Mestre Fúngico",100);
+
+        // Simulando o início de uma batalha
+        System.out.println(personagem.getNome() + " enfrenta " + inimigo.getNome() + " e " + inimigo.getNome());
+        inimigo.inimigoBandido();
+        System.out.println(personagem.getVida());
+
+        // Embaralha o deck e pega as cartas para a mão
+        //jogador.embaralharDeck();
+
+        // O jogador joga uma carta
+        //jogador.usarCarta(0, inimigo);  // Jogando a carta de ataque "Golpe Rápido"
+
+        // Exibindo a vida do inimigo após o ataque
+        //System.out.println("Vida do " + inimigo.getNome() + ": " + inimigo.getVida());
+
+        // O jogador joga outra carta
+        //jogador.usarCarta(1, inimigo);  // Jogando a carta de defesa "Escudo de Ferro"
+
+
+    }
 }
