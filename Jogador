@@ -1,0 +1,40 @@
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
+
+class Jogador {
+    Scanner entrada = new Scanner(System.in);
+    Personagem personagem = new Personagem();
+    private int idJogador;
+    private String nomeJogador;
+    private int partidasConcluidas;
+
+    private ArrayList <Jogador> listaJogador = new ArrayList<Jogador>();
+
+    public Jogador(){
+    }
+
+    public Jogador(String nomeJogador) {
+        this.idJogador = listaJogador.size();
+        this.nomeJogador = nomeJogador;
+        this.partidasConcluidas = partidasConcluidas;
+    }
+
+    public void criarJogador(){
+        System.out.println("Insira um nome de usuário");
+        String nomeJogador = entrada.nextLine();
+        Jogador novoJogador = new Jogador(nomeJogador);
+
+        listaJogador.add(novoJogador);
+        System.out.println("Jogador cadastrado com sucesso!");
+
+        System.out.println("Jogadores cadastrados:");
+        System.out.println(listaJogador);
+        System.out.print("\n\n\n");
+
+    }
+
+    public String getNomeJogador(){
+        return nomeJogador;
+    }
+}
