@@ -1,14 +1,12 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 
 class Baralho {
     Random random = new Random();
     Personagem personagem = new Personagem();
     private int idBaralho;
-    private String nome;
-    private int custo;
-    private String descricao;
     private List<Carta> deck;
     private List<Carta> maos;
 
@@ -17,28 +15,14 @@ class Baralho {
     // Construtor
     public Baralho(){
     }
-    public Baralho(String nome, int custo, String descricao) {
+    public Baralho(Personagem personagem) {
+        this.personagem = personagem;
         this.idBaralho = deckCompleto.size();
-        this.nome = nome;
-        this.custo = custo;
-        this.descricao = descricao;
         this.deck = new ArrayList<>();
         this.maos = new ArrayList<>();
-        inicializarDeck();
     }
 
     // Getters
-    public String getNome() {
-        return nome;
-    }
-
-    public int getCusto() {
-        return custo;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
 
     public List getMaos(){
         return maos;
@@ -46,11 +30,11 @@ class Baralho {
 
     public void deck_Utilizado() {
         // Lista de cartas agora deve ser de tipo Carta
+        System.out.println(personagem.getEscolha());
 
-        int escolha = personagem.getEscolha();
 
         // Criando as cartas com seus nomes e tipos
-        if (escolha == 1) {
+        if (personagem.getEscolha() == 1) {
             deck.add(new CartaAtaque("Corte", 1, 6, "Cause 6 de dano"));
             deck.add(new CartaAtaque("Corte", 1, 6, "Cause 6 de dano"));
             deck.add(new CartaAtaque("Corte", 1, 6, "Cause 6 de dano"));
@@ -72,7 +56,7 @@ class Baralho {
             deck.add(new CartaAtaque("Forma Demoníaca", 3, 0, "Ganhe +2 de ataque no fim de cada turno."));
             deck.add(new CartaDefesa("Escudo de Fogo", 2, 12, "Ganhe 12 de defesa. Cada vez que for atacado no próximo turno, o inimigo receberá 3 de dano"));
             deck.add(new CartaDefesa("Escudo de Fogo", 2, 12, "Ganhe 12 de defesa. Cada vez que for atacado no próximo turno, o inimigo receberá 3 de dano"));
-        } else if (escolha == 2) {
+        } else if (personagem.getEscolha() == 2) {
             // Implementar a lógica para o caso 2, se necessário
             deck.add(new CartaAtaque("Facada", 1, 6, "Causa 6 de dano"));
             deck.add(new CartaAtaque("Facada", 1, 6, "Causa 6 de dano"));
@@ -87,7 +71,14 @@ class Baralho {
 
         // Imprimindo a lista de cartas
         for (int i = 0; i < deck.size(); i++) {
-            System.out.println(deck.get(i).nome_Carta + "\nCusto " + deck.get(i).custo + ".\n" + deck.get(i).descricao + "\n\n");
+            System.out.println(deck.get(i));
+        }
+
+    }
+
+    public void mostrarCartas(){
+        for (int i = 0; i < maos.size(); i++){
+            System.out.print(maos.get(i).nomeCarta + "\nCusto " + maos.get(i).custo + "\n" + maos.get(i).descricao + "\n\n");
         }
     }
 
@@ -108,24 +99,63 @@ class Baralho {
         }
     }
 
+    public void inicializarMao(){
+        for (int i = 0; i < 4; i++){
+            maos.add(deck.get(random.nextInt(20)));  // Pegando 4 cartas como exemplo
+        }
+    }
+
     public void embaralharDeck() {
         int i = 0;
         // Embaralha as cartas do deck
         // (Simplesmente adicionando as cartas ao deck para simplificação)
         maos.clear();
-        for (; i < 4; i++){
+        int deckSize = deck.size();
+        int numeroDeCartas = Math.min(4, deckSize);
+        for (; i < numeroDeCartas; i++){
             maos.add(deck.get(random.nextInt(20)));  // Pegando 4 cartas como exemplo
         }
     }
+    public void usarCarta(Inimigo inimigo) {
+        Scanner entrada = new Scanner(System.in);
+        int energia = personagem.getEnergia();
+        while (energia > 0 && !maos.isEmpty()) {
+            System.out.println("Selecione a carta a ser jogada (ou -1 para finalizar): ");
+            System.out.println("Você possui " + personagem.getVida() + " pontos de vida e " + energia + " de energia");
 
-    int energia = personagem.getEnergia();
+            // Exibe as cartas disponíveis
+            for (int i = 0; i < maos.size(); i++) {
+                System.out.println(i + ": " + maos.get(i).nomeCarta + " - Custo: " + maos.get(i).custo + " - " + maos.get(i).descricao);
+            }
 
-    public void usarCarta(int indiceCarta, Inimigo inimigo) {
-        if (energia >= maos.get(indiceCarta).custo) {
-            energia -= maos.get(indiceCarta).custo;
-            maos.get(indiceCarta).usar(this, inimigo);
-        } else {
-            System.out.println("Energia insuficiente para usar a carta.");
+            // Lê a escolha do jogador
+            int indiceCarta = entrada.nextInt();
+
+            // Verifica se o jogador deseja finalizar a rodada
+            if (indiceCarta == -1) {
+                System.out.println("Você passou o turno.");
+                break; // Sai do loop se o jogador escolher -1
+            }
+
+            // Verifica se o índice é válido
+            if (indiceCarta >= 0 && indiceCarta < maos.size()) {
+                // Verifica se o jogador tem energia suficiente para usar a carta
+                if (energia >= maos.get(indiceCarta).custo) {
+                    energia -= maos.get(indiceCarta).custo;  // Deduz a energia
+                    maos.get(indiceCarta).usar(this, inimigo);  // Executa a ação da carta
+                    System.out.println("Carta " + maos.get(indiceCarta).nomeCarta + " usada com sucesso.");
+                    deck.add(maos.get(indiceCarta));
+                    maos.remove(indiceCarta);
+                } else {
+                    System.out.println("Energia insuficiente para usar esta carta.");
+                }
+            } else {
+                System.out.println("Índice inválido. Tente novamente.");
+            }
+        }
+
+        if (maos.isEmpty()) {
+            System.out.println("Você não tem mais cartas para jogar.");
         }
     }
     public void receberDefesa(int defesa) {
