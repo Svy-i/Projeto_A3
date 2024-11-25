@@ -1,19 +1,19 @@
 // Classe base para uma carta
 
 abstract class Carta{
-    String nome_Carta;
+    String nomeCarta;
     int custo;  // Custo em energia
     String descricao;
 
     // Construtor
     public Carta(String nome, int custo, String descricao){
-        this.nome_Carta = nome;
+        this.nomeCarta = nome;
         this.custo = custo;
         this.descricao = descricao;
     }
 
     // Método abstrato para a ação da carta
-    public abstract void usar(Baralho deck, Inimigo inimigo);
+    public abstract void usar(Baralho baralho, Inimigo inimigo);
 }
 
 // Carta de Ataque
@@ -26,10 +26,10 @@ class CartaAtaque extends Carta{
     }
 
     @Override
-    public void usar(Baralho deck, Inimigo inimigo){
+    public void usar(Baralho baralho, Inimigo inimigo){
         Personagem personagem = new Personagem();
         personagem.getNome();
-        System.out.println(" usa " + nome_Carta + " e causa " + dano + " de dano ao inimigo!");
+        System.out.println("\nUsa " + nomeCarta + " e causa " + dano + " de dano ao inimigo!");
         inimigo.receberDano(dano);
     }
 }
@@ -44,23 +44,41 @@ class CartaDefesa extends Carta{
     }
 
     @Override
-    public void usar(Baralho deck, Inimigo inimigo){
-        System.out.println("Usa " + nome_Carta + " e ganha " + defesa + " de defesa!");
-        deck.receberDefesa(defesa);
+    public void usar(Baralho baralho, Inimigo inimigo){
+        System.out.println("\nUsa " + nomeCarta + " e ganha " + defesa + " de defesa!");
+        baralho.receberDefesa(defesa);
     }
 }
 
 class CartaCompra extends Carta{
-    int compra;
+    int compra;  // Quantidade de cartas a serem compradas
 
-
+    // Construtor
     public CartaCompra(String nome, int custo, int compra, String descricao){
         super(nome, custo, descricao);
+        this.compra = compra;
     }
 
     @Override
-    public void usar(Baralho deck, Inimigo inimigo){
-        deck.getMaos().add(deck.get(compra)
-        System.out.println("Usa " + nome_Carta + " e compra " +);
+    public void usar(Baralho baralho, Inimigo inimigo){
+        // Verificar se o baralho tem cartas suficientes
+        if (baralho.getMaos().size() < compra) {
+            System.out.println("Não há cartas suficientes para comprar.");
+            return;
+        }
+
+        // Comprar as cartas e adicionar à mão do jogador
+        for (int i = 0; i < compra; i++) {
+            Carta cartaComprada = (Carta) baralho.getMaos().get(baralho.getMaos().size() - 1);
+            baralho.getMaos().add(cartaComprada);
+            baralho.getMaos().remove(baralho.getMaos().size() - 1);
+            System.out.println("Você comprou a carta: " + cartaComprada.nomeCarta);
+        }
+
+        System.out.println("Você usou " + nomeCarta + " e comprou " + compra + " carta(s).");
+    }
+    @Override
+    public String toString() {
+        return nomeCarta + "\nCusto " + custo + ".\n" + descricao + "\n\n";
     }
 }
