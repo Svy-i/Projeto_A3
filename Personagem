@@ -1,21 +1,19 @@
 import java.util.Scanner;
 import java.util.ArrayList;
-class Personagem {
-    Scanner entrada = new Scanner(System.in);
-    private int escolha;
-    private int idPersonagem = 1;
-    private String nomePersonagem;
-    private String classe;
-    private int vidaPersonagem;
-    private int energia;
-    private int defesa;
+    class Personagem {
+        Scanner entrada = new Scanner(System.in);
+        private int escolha;
+        private int idPersonagem = 1;
+        private String nomePersonagem;
+        private String classe;
+        private int vidaPersonagem;
+        private int energia;
+        private int defesa;
 
-    private ArrayList <Personagem> listaPersonagem = new ArrayList<Personagem>();
     public Personagem(){
     }
 
     public Personagem(String nomePersonagem, String classe, int vidaPersonagem, int energia, int escolha){
-        this.idPersonagem = listaPersonagem.size();
         this.nomePersonagem = nomePersonagem;
         this.classe = classe;
         this.vidaPersonagem = vidaPersonagem;
@@ -28,7 +26,7 @@ class Personagem {
             System.out.println("Selecione seu Personagem: ");
             System.out.println("1- Classe: Guerreiro\nNome: Loric\n100 pontos de vida\n\n");
             System.out.println("2- Classe: Assassino\nNome: Fey\n50 pontos de vida\n");
-            int escolha = entrada.nextInt();
+            escolha = entrada.nextInt();
             if (escolha == 1){
                 nomePersonagem = "Loric";
                 classe = "Guerreiro";
@@ -43,8 +41,6 @@ class Personagem {
                 System.out.println("Escolha inválida. Tente novamente.");
             }
         } while (escolha < 1 || escolha > 2);
-        Personagem escolhaPersonagem = new Personagem(nomePersonagem, classe, vidaPersonagem, energia, escolha);
-        listaPersonagem.add(escolhaPersonagem);
         System.out.println(nomePersonagem + "\n" + classe + "\n" + vidaPersonagem + " pontos de vida");
     }
 
