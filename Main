@@ -1,23 +1,29 @@
 class Main {
     public static void main(String[] args) {
         Personagem personagem = new Personagem();
-        Inimigo inimigo = new Inimigo();
         Jogador jogador = new Jogador();
-        Baralho deck = new Baralho();
+        Inimigo inimigo = new Inimigo();
+        Baralho baralho = new Baralho(personagem);
+        Partida partida = new Partida(personagem, inimigo, baralho);
 
         //Criar perfil de jogador
         jogador.criarJogador();
 
         //Selecionar personagem
         personagem.escolherPersonagem();
+        System.out.println("Começar partida de " + personagem.getNome());
+        baralho.deck_Utilizado();
 
         //Inimigo inimigoBandido = new Inimigo("Bandido", 50);
         //Inimigo inimigoCogumelo = new Inimigo("Mestre Fúngico",100);
 
         // Simulando o início de uma batalha
-        System.out.println(personagem.getNome() + " enfrenta " + inimigo.getNome() + " e " + inimigo.getNome());
         inimigo.inimigoBandido();
-        System.out.println(personagem.getVida());
+        System.out.println(personagem.getNome() + " enfrenta: Bandido");
+        partida.realizarCombate();
+        //System.out.println("Turno de " + personagem.getNome());
+
+        //inimigo.inimigoBandido();
 
         // Embaralha o deck e pega as cartas para a mão
         //jogador.embaralharDeck();
@@ -34,3 +40,6 @@ class Main {
 
     }
 }
+/* Para simular a mudança de inimigos. Summona um metodo de inimigo e depois roda o combate. Quando o inimigo morre,
+roda o proximo inimigo para atualizar o proximo combate.
+ */
