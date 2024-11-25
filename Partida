@@ -1,12 +1,52 @@
-import java.util.Scanner;
 
 class Partida {
-  private int id_Partida;
-  private int resultadoFinal;
-  private int id_Deck;
-  private int idPersonagem; //foreign key
-  private int idJogador; //foreign key
-  private int idCarta; //foreign key
-  private int idInimigo; //foreign key
-  
+    private int idPartida;
+    private Personagem personagem;
+    private Inimigo inimigo;
+    private Carta carta;
+    private Baralho baralho;
+
+    public Partida() {
+    }
+
+    public Partida(Personagem personagem, Inimigo inimigo, Baralho baralho) {
+        this.personagem = personagem;
+        this.inimigo = inimigo;
+        this.baralho = baralho;
+    }
+
+    // Metodo para simular os turnos
+    public void realizarCombate() {
+        System.out.println("O jogo começou!");
+        baralho.deck_Utilizado();
+        baralho.inicializarMao();
+
+        while (personagem.getVida() > 0 && inimigo.getVida() > 0) {
+            // Turno do jogador
+            System.out.println("\nTurno do " + personagem.getNome() + "!");
+            baralho.usarCarta(inimigo);
+            baralho.embaralharDeck();
+            // Verifica se o inimigo morreu após o ataque do jogador
+            if (inimigo.getVida() == 0) {
+                System.out.println(inimigo.getNome() + " foi derrotado!");
+                break;
+            }
+
+            // Turno do inimigo
+            System.out.println("\nTurno do " + inimigo.getNome() + "!");
+            inimigo.atacar(personagem);  // Inimigo ataca o jogador
+
+            // Verifica se o jogador morreu após o ataque do inimigo
+            if (personagem.getVida() == 0) {
+                System.out.println(personagem.getNome() + " foi derrotado!");
+                break;
+            }
+        }
+
+        if (personagem.getVida() > 0) {
+            System.out.println(personagem.getNome() + " venceu!");
+        } else {
+            System.out.println(inimigo.getNome() + " venceu!");
+        }
+    }
 }
