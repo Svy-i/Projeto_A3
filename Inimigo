@@ -1,13 +1,16 @@
 import java.util.Random;
 import java.util.ArrayList;
 class Inimigo {
-    Personagem personagem = new Personagem();
     Random random = new Random();
-    private ArrayList<Inimigo> listaInimigo = new ArrayList<Inimigo>();
     private int idInimigo;
     private String nomeInimigo;
     private int vidaInimigo;
     private int ataqueInimigo;
+
+    private ArrayList<Inimigo> listaInimigo = new ArrayList<Inimigo>();
+
+    public Inimigo(){
+    }
 
     public Inimigo(String nomeInimigo, int vidaInimigo, int ataqueInimigo) {
         this.idInimigo = listaInimigo.size();
@@ -24,12 +27,17 @@ class Inimigo {
         System.out.println(nomeInimigo + " recebeu " + dano + " de dano. Vida restante: " + vidaInimigo);
     }
 
+    public void atacar(Personagem personagem) {
+        System.out.println(nomeInimigo + " ataca e causa " + ataqueInimigo + " de dano!");
+        personagem.receberDano(ataqueInimigo);
+    }
+
     public void inimigoBandido(){
         nomeInimigo = "Bandido";
         vidaInimigo = 50;
         ataqueInimigo = 6;
 
-        int randomizador = random.nextInt(7);
+        /*int randomizador = random.nextInt(7);
         if (randomizador == 1 || randomizador == 2 || randomizador == 3){
             personagem.receberDano(ataqueInimigo);
         } else if (randomizador == 4 || randomizador == 5){
@@ -38,7 +46,7 @@ class Inimigo {
             vidaInimigo += 2;
         }
         Inimigo novoInimigo = new Inimigo(nomeInimigo, vidaInimigo, ataqueInimigo);
-        listaInimigo.add(novoInimigo);
+        listaInimigo.add(novoInimigo);*/
     }
 
     public void inimigoCogumelo(){
