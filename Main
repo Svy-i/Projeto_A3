@@ -19,8 +19,25 @@ class Main {
 
         // Simulando o início de uma batalha
         inimigo.inimigoBandido();
-        System.out.println(personagem.getNome() + " enfrenta: Bandido");
+        System.out.println(personagem.getNome() + " enfrenta: " + inimigo.getNome());
         partida.realizarCombate();
+
+        inimigo.inimigoCogumelo();
+        System.out.println(personagem.getNome() + " enfrenta: " + inimigo.getNome());
+        partida.realizarCombate();
+
+        inimigo.inimigoGnoll();
+        System.out.println(personagem.getNome() + " enfrenta: " + inimigo.getNome());
+        partida.realizarCombate();
+
+        inimigo.inimigoBruxa();
+        System.out.println(personagem.getNome() + " enfrenta: " + inimigo.getNome());
+        partida.realizarCombate();
+
+        inimigo.inimigoChefe();
+        System.out.println(personagem.getNome() + " enfrenta: " + inimigo.getNome());
+        partida.realizarCombate();
+        jogador.concluirPartida();
         //System.out.println("Turno de " + personagem.getNome());
 
         //inimigo.inimigoBandido();
