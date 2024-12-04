@@ -7,7 +7,7 @@ class Jogador {
     Personagem personagem = new Personagem();
     private int idJogador;
     private String nomeJogador;
-    private int partidasConcluidas;
+    private int partidasConcluidas = 0;
 
     private ArrayList <Jogador> listaJogador = new ArrayList<Jogador>();
 
@@ -32,6 +32,10 @@ class Jogador {
         System.out.println(listaJogador);
         System.out.print("\n\n\n");
 
+    }
+
+    public void concluirPartida(){
+        partidasConcluidas += 1;
     }
 
     public String getNomeJogador(){
