@@ -50,33 +50,52 @@ class CartaDefesa extends Carta{
     }
 }
 
-class CartaCompra extends Carta{
+class CartaCura extends Carta {
+    int dano;
+    int cura;
+
+    public CartaCura(String nome, int custo, int dano, int cura, String descricao) {
+        super(nome, custo, descricao);
+        this.dano = dano;
+        this.cura = cura;
+    }
+
+    @Override
+    public void usar(Baralho baralho, Inimigo inimigo) {
+        Personagem personagem = new Personagem();
+        personagem.getNome();
+        System.out.println("\nUsa " + nomeCarta + " e causa " + dano + " de dano ao inimigo!");
+        inimigo.receberDano(dano);
+        personagem.recuperarVida(cura);
+    }
+    }
+class CartaCompra extends Carta {
     int compra;  // Quantidade de cartas a serem compradas
 
     // Construtor
-    public CartaCompra(String nome, int custo, int compra, String descricao){
+    public CartaCompra(String nome, int custo, int compra, String descricao) {
         super(nome, custo, descricao);
         this.compra = compra;
     }
 
     @Override
-    public void usar(Baralho baralho, Inimigo inimigo){
+    public void usar(Baralho baralho, Inimigo inimigo) {
         // Verificar se o baralho tem cartas suficientes
-        if (baralho.getMaos().size() < compra) {
+        if (baralho.getDeck().size() < compra) {
             System.out.println("Não há cartas suficientes para comprar.");
             return;
         }
 
         // Comprar as cartas e adicionar à mão do jogador
         for (int i = 0; i < compra; i++) {
-            Carta cartaComprada = (Carta) baralho.getMaos().get(baralho.getMaos().size() - 1);
-            baralho.getMaos().add(cartaComprada);
-            baralho.getMaos().remove(baralho.getMaos().size() - 1);
-            System.out.println("Você comprou a carta: " + cartaComprada.nomeCarta);
+            //Carta cartaComprada = (Carta) baralho.getMaos().get(baralho.getMaos().size() - 1);
+            baralho.getMaos().add(baralho.getDeck().get(i));
+            baralho.getDeck().remove(i);
         }
 
         System.out.println("Você usou " + nomeCarta + " e comprou " + compra + " carta(s).");
     }
+
     @Override
     public String toString() {
         return nomeCarta + "\nCusto " + custo + ".\n" + descricao + "\n\n";
