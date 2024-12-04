@@ -2,6 +2,7 @@ import java.util.Random;
 import java.util.ArrayList;
 class Inimigo {
     Random random = new Random();
+    Personagem personagem = new Personagem();
     private int idInimigo;
     private String nomeInimigo;
     private int vidaInimigo;
@@ -36,33 +37,85 @@ class Inimigo {
         nomeInimigo = "Bandido";
         vidaInimigo = 50;
         ataqueInimigo = 6;
+    }
 
-        /*int randomizador = random.nextInt(7);
+    public void comportamentoBandido(){
+        int randomizador = random.nextInt(7);
+        if (randomizador == 1 || randomizador == 2 || randomizador == 3){
+            personagem.receberDano(ataqueInimigo);
+        } else if (randomizador == 4 || randomizador == 5){
+            ataqueInimigo += 4;
+        } else if (randomizador == 6 ){
+            vidaInimigo += 6;
+        }
+    }
+
+    public void inimigoCogumelo(){
+        nomeInimigo = "Mestre Fúngico";
+        vidaInimigo = 75;
+        ataqueInimigo = 8;
+    }
+
+    public void comportamentoCogumelo(){
+        int randomizador = random.nextInt(7);
         if (randomizador == 1 || randomizador == 2 || randomizador == 3){
             personagem.receberDano(ataqueInimigo);
         } else if (randomizador == 4 || randomizador == 5){
             ataqueInimigo += 3;
         } else if (randomizador == 6 ){
-            vidaInimigo += 2;
+            vidaInimigo += 12;
         }
-        Inimigo novoInimigo = new Inimigo(nomeInimigo, vidaInimigo, ataqueInimigo);
-        listaInimigo.add(novoInimigo);*/
-    }
-
-    public void inimigoCogumelo(){
-
     }
 
     public void inimigoGnoll(){
+        nomeInimigo = "Gnoll";
+        ataqueInimigo = 16;
+        vidaInimigo = 30;
+    }
 
+    public void comportamentoGnoll(){
+        int randomizador = random.nextInt(7);
+        if (randomizador == 1 || randomizador == 2 || randomizador == 3){
+            personagem.receberDano(ataqueInimigo);
+        } else if (randomizador == 4 || randomizador == 5){
+            ataqueInimigo += 6;
+        } else if (randomizador == 6 ){
+            vidaInimigo += 8;
+        }
     }
 
     public void inimigoBruxa(){
+        nomeInimigo = "Bruxa do Pântano";
+        ataqueInimigo = 12;
+        vidaInimigo = 10;
+    }
 
+    public void comportamentoBruxa(){
+        int randomizador = random.nextInt(7);
+        if (randomizador == 1 || randomizador == 2 || randomizador == 3){
+            personagem.receberDano(ataqueInimigo);
+        } else if (randomizador == 4 || randomizador == 5){
+            ataqueInimigo += 4;
+        } else if (randomizador == 6 ){
+            vidaInimigo += 16;
+        }
     }
 
     public void inimigoChefe(){
+        nomeInimigo = "Axolotl, Mestre da Chama Sombria";
+        ataqueInimigo = 20;
+        vidaInimigo = 200;
+    }
 
+    public void comportamentoChefe(){
+        int randomizador = random.nextInt(7);
+        if (randomizador == 1 || randomizador == 2 || randomizador == 3){
+            personagem.receberDano(ataqueInimigo);
+        } else if (randomizador == 4 || randomizador == 5){
+            ataqueInimigo += 5;
+        } else if (randomizador == 6 ){
+            vidaInimigo += 12;
+        }
     }
 
     public int getVida() {
