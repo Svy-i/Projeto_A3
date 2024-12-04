@@ -1,14 +1,14 @@
 import java.util.Scanner;
 import java.util.ArrayList;
-    class Personagem {
-        Scanner entrada = new Scanner(System.in);
-        private int escolha;
-        private int idPersonagem = 1;
-        private String nomePersonagem;
-        private String classe;
-        private int vidaPersonagem;
-        private int energia;
-        private int defesa;
+class Personagem {
+    Scanner entrada = new Scanner(System.in);
+    private int escolha;
+    private int idPersonagem = 1;
+    private String nomePersonagem;
+    private String classe;
+    private int vidaPersonagem;
+    private int energia;
+    private int defesa;
 
     public Personagem(){
     }
@@ -45,9 +45,22 @@ import java.util.ArrayList;
     }
 
     public void receberDano(int ataqueInimigo) {
-        vidaPersonagem -= ataqueInimigo;
-        if (vidaPersonagem < 0) {
-            vidaPersonagem = 0;
+        if (defesa > 0) {
+            defesa -= ataqueInimigo;
+            ataqueInimigo -= defesa + ataqueInimigo;
+            if (defesa < 0) {
+                defesa = 0;
+            } else {
+                ataqueInimigo -= defesa;
+                defesa = 0;
+            }
+        }
+        // Caso ainda haja ataque sobrando, reduzir a vida
+        if (ataqueInimigo > 0) {
+            vidaPersonagem -= ataqueInimigo;
+            if (vidaPersonagem < 0) {
+                vidaPersonagem = 0;
+            }
         }
     }
 
@@ -55,6 +68,12 @@ import java.util.ArrayList;
         this.defesa += defesa;
         System.out.println("Defesa aumentada para: " + this.defesa);
     }
+
+    public void recuperarVida(int cura){
+        this.vidaPersonagem += cura;
+        System.out.println(nomePersonagem + ", ganha " + cura + " pontos de vida");
+    }
+
 
     public String getNome() {
         return nomePersonagem;
