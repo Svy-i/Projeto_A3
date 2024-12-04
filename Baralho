@@ -28,6 +28,10 @@ class Baralho {
         return maos;
     }
 
+    public List getDeck(){
+        return deck;
+    }
+
     public void deck_Utilizado() {
         // Lista de cartas agora deve ser de tipo Carta
         System.out.println(personagem.getEscolha());
@@ -39,34 +43,46 @@ class Baralho {
             deck.add(new CartaAtaque("Corte", 1, 6, "Cause 6 de dano"));
             deck.add(new CartaAtaque("Corte", 1, 6, "Cause 6 de dano"));
             deck.add(new CartaAtaque("Corte", 1, 6, "Cause 6 de dano"));
-            deck.add(new CartaAtaque("Porrada", 2, 8, "Cause 8 de dano e aumente em 50% o dano recebido pelo alvo"));
             deck.add(new CartaAtaque("Golpe Pesado", 2, 12, "Causa 12 de dano"));
-            deck.add(new CartaAtaque("Desafiar", 0, 14, "Só pode ser jogada caso tenha apenas cartas de ataque na mão. Cause 14 de dano"));
+            deck.add(new CartaAtaque("Golpe Pesado", 2, 12, "Causa 12 de dano"));
+            deck.add(new CartaAtaque("Desafiar", 0, 3, "Cause 3 de dano"));
             deck.add(new CartaDefesa("Defender", 1, 5, "Ganhe 5 de defesa neste turno"));
             deck.add(new CartaDefesa("Defender", 1, 5, "Ganhe 5 de defesa neste turno"));
             deck.add(new CartaDefesa("Defender", 1, 5, "Ganhe 5 de defesa neste turno"));
             deck.add(new CartaDefesa("Defender", 1, 5, "Ganhe 5 de defesa neste turno"));
-            deck.add(new CartaAtaque("Sanguinário", 2, 20, "Cause 20 de dano. Sempre que jogar essa carta ela perderá 2 de dano"));
-            deck.add(new CartaAtaque("Voadora", 1, 5, "Cause 5 de dano. Se o inimigo recebeu dano neste turno, ganhe 1 de energia e compre uma carta."));
-            deck.add(new CartaAtaque("Separar Alma", 2, 12, "Cause 12 de dano. Recupere 4 de vida."));
-            deck.add(new CartaAtaque("Separar Alma", 2, 12, "Cause 12 de dano. Recupere 4 de vida."));
-            deck.add(new CartaAtaque("Separar Alma", 2, 12, "Cause 12 de dano. Recupere 4 de vida."));
+            deck.add(new CartaAtaque("Sanguinário", 3, 20, "Cause 20 de dano."));
+            deck.add(new CartaCura("Separar Alma", 2, 12, 4, "Cause 12 de dano. Ganhe 4 de vida."));
+            deck.add(new CartaCura("Separar Alma", 2, 12, 4, "Cause 12 de dano. Ganhe 4 de vida."));
+            deck.add(new CartaCura("Separar Alma", 2, 12, 4, "Cause 12 de dano. Ganhe 4 de vida."));
             deck.add(new CartaCompra("Trance de Batalha", 0, 2, "Compre 2 cartas."));
-            deck.add(new CartaAtaque("Flexionar", 0, 0, "Ganhe +2 de ataque neste turno."));
-            deck.add(new CartaAtaque("Forma Demoníaca", 3, 0, "Ganhe +2 de ataque no fim de cada turno."));
-            deck.add(new CartaDefesa("Escudo de Fogo", 2, 12, "Ganhe 12 de defesa. Cada vez que for atacado no próximo turno, o inimigo receberá 3 de dano"));
-            deck.add(new CartaDefesa("Escudo de Fogo", 2, 12, "Ganhe 12 de defesa. Cada vez que for atacado no próximo turno, o inimigo receberá 3 de dano"));
+            deck.add(new CartaCompra("Trance de Batalha", 0, 2, "Compre 2 cartas."));
+            deck.add(new CartaCompra("Trance de Batalha", 0, 2, "Compre 2 cartas."));
+            deck.add(new CartaDefesa("Armadura Colossal", 2, 12, "Ganhe 12 de defesa."));
+            deck.add(new CartaDefesa("Armadura Colossal", 2, 12, "Ganhe 12 de defesa."));
+
         } else if (personagem.getEscolha() == 2) {
             // Implementar a lógica para o caso 2, se necessário
-            deck.add(new CartaAtaque("Facada", 1, 6, "Causa 6 de dano"));
-            deck.add(new CartaAtaque("Facada", 1, 6, "Causa 6 de dano"));
-            deck.add(new CartaAtaque("Facada", 1, 6, "Causa 6 de dano"));
-            deck.add(new CartaAtaque("Facada", 1, 6, "Causa 6 de dano"));
-            deck.add(new CartaDefesa("Desvanecer", 1, 5, "Bloqueia 5 de dano"));
-            deck.add(new CartaDefesa("Desvanecer", 1, 5, "Bloqueia 5 de dano"));
-            deck.add(new CartaDefesa("Desvanecer", 1, 5, "Bloqueia 5 de dano"));
-            deck.add(new CartaDefesa("Desvanecer", 1, 5, "Bloqueia 5 de dano"));
-            deck.add(new CartaAtaque("Corte sanguinário", 2, 12, "Causa 8 de dano, deixe o alvo sangrando por 2 turnos"));
+            deck.add(new CartaAtaque("Facada", 1, 6, "Causa 6 de dano."));
+            deck.add(new CartaAtaque("Facada", 1, 6, "Causa 6 de dano."));
+            deck.add(new CartaAtaque("Facada", 1, 6, "Causa 6 de dano."));
+            deck.add(new CartaAtaque("Facada", 1, 6, "Causa 6 de dano."));
+            deck.add(new CartaDefesa("Desvanecer", 1, 5, "Bloqueia 5 de dano."));
+            deck.add(new CartaDefesa("Desvanecer", 1, 5, "Bloqueia 5 de dano."));
+            deck.add(new CartaDefesa("Desvanecer", 1, 5, "Bloqueia 5 de dano."));
+            deck.add(new CartaDefesa("Desvanecer", 1, 5, "Bloqueia 5 de dano."));
+            deck.add(new CartaAtaque("Corte sanguinário", 2, 12, "Causa 8 de dano."));
+            deck.add(new CartaCompra("Disparada", 1, 4, "Compre 4 cartas."));
+            deck.add(new CartaCompra("Disparada", 1, 4, "Compre 4 cartas."));
+            deck.add(new CartaCura("Beber Sangue", 0, 3, 2, "Cause 3 de dano. Ganhe 2 de vida."));
+            deck.add(new CartaCura("Beber Sangue", 0, 2, 2, "Cause 3 de dano. Ganhe 2 de vida."));
+            deck.add(new CartaCura("Beber Sangue", 0, 3, 2, "Cause 3 de dano. Ganhe 2 de vida."));
+            deck.add(new CartaAtaque("Facada", 1, 6, "Causa 6 de dano."));
+            deck.add(new CartaAtaque("Facada", 1, 6, "Causa 6 de dano."));
+            deck.add(new CartaAtaque("Facada", 1, 6, "Causa 6 de dano."));
+            deck.add(new CartaAtaque("Facada", 1, 6, "Causa 6 de dano."));
+            deck.add(new CartaCura("Separar Alma", 0, 3, 2, "Cause 3 de dano. Ganhe 2 de vida."));
+            deck.add(new CartaCura("Separar Alma", 0, 3, 2, "Cause 3 de dano. Ganhe 2 de vida."));
+
         }
 
         // Imprimindo a lista de cartas
@@ -74,29 +90,6 @@ class Baralho {
             System.out.println(deck.get(i));
         }
 
-    }
-
-    public void mostrarCartas(){
-        for (int i = 0; i < maos.size(); i++){
-            System.out.print(maos.get(i).nomeCarta + "\nCusto " + maos.get(i).custo + "\n" + maos.get(i).descricao + "\n\n");
-        }
-    }
-
-    public void inicializarDeck() {
-        int escolha = personagem.getEscolha();
-
-        // Inicializando o deck do jogador com algumas cartas de exemplo
-        if (escolha == 1) {
-            deck.add(new CartaAtaque("Golpe Rápido", 1, 6, "Causa 6 de dano"));
-            deck.add(new CartaDefesa("Escudo de Ferro", 1, 5, "Bloqueia 5 de dano"));
-            deck.add(new CartaAtaque("Golpe Pesado", 2, 12, "Causa 12 de dano"));
-        } else if (escolha == 2){
-            deck.add(new CartaAtaque("Facada", 1, 6, "Causa 6 de dano"));
-            deck.add(new CartaDefesa("Desvanecer", 1, 5, "Bloqueia 5 de dano"));
-            deck.add(new CartaAtaque("Corte sanguinário", 2, 12, "Causa 8 de dano, deixe o alvo sangrando por 2 turnos"));
-        } else {
-            System.out.println("Escolha inválida!");
-        }
     }
 
     public void inicializarMao(){
@@ -121,7 +114,7 @@ class Baralho {
         int energia = personagem.getEnergia();
         while (energia > 0 && !maos.isEmpty()) {
             System.out.println("Selecione a carta a ser jogada (ou -1 para finalizar): ");
-            System.out.println("Você possui " + personagem.getVida() + " pontos de vida e " + energia + " de energia");
+            System.out.println("Você possui " + personagem.getVida() + " pontos de vida, " + personagem.getDefesa() + " de defesa e " + energia + " de energia");
 
             // Exibe as cartas disponíveis
             for (int i = 0; i < maos.size(); i++) {
