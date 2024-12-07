@@ -13,7 +13,7 @@ abstract class Carta{
     }
 
     // Método abstrato para a ação da carta
-    public abstract void usar(Baralho baralho, Inimigo inimigo);
+    public abstract void usar(Baralho baralho, Inimigo inimigo, Personagem personagem);
 }
 
 // Carta de Ataque
@@ -26,10 +26,9 @@ class CartaAtaque extends Carta{
     }
 
     @Override
-    public void usar(Baralho baralho, Inimigo inimigo){
-        Personagem personagem = new Personagem();
+    public void usar(Baralho baralho, Inimigo inimigo, Personagem personagem){
         personagem.getNome();
-        System.out.println("\nUsa " + nomeCarta + " e causa " + dano + " de dano ao inimigo!");
+        System.out.println(personagem.getNome() + ": Usa " + nomeCarta + " e causa " + dano + " de dano ao inimigo!");
         inimigo.receberDano(dano);
     }
 }
@@ -44,8 +43,8 @@ class CartaDefesa extends Carta{
     }
 
     @Override
-    public void usar(Baralho baralho, Inimigo inimigo){
-        System.out.println("\nUsa " + nomeCarta + " e ganha " + defesa + " de defesa!");
+    public void usar(Baralho baralho, Inimigo inimigo, Personagem personagem){
+        System.out.println(personagem.getNome() + ": Usa " + nomeCarta + " e ganha " + defesa + " de defesa!");
         baralho.receberDefesa(defesa);
     }
 }
@@ -61,10 +60,8 @@ class CartaCura extends Carta {
     }
 
     @Override
-    public void usar(Baralho baralho, Inimigo inimigo) {
-        Personagem personagem = new Personagem();
-        personagem.getNome();
-        System.out.println("\nUsa " + nomeCarta + " e causa " + dano + " de dano ao inimigo!");
+    public void usar(Baralho baralho, Inimigo inimigo, Personagem personagem) {
+        System.out.println(personagem.getNome() + ": Usa " + nomeCarta + " e causa " + dano + " de dano ao inimigo!");
         inimigo.receberDano(dano);
         personagem.recuperarVida(cura);
     }
@@ -79,7 +76,7 @@ class CartaCompra extends Carta {
     }
 
     @Override
-    public void usar(Baralho baralho, Inimigo inimigo) {
+    public void usar(Baralho baralho, Inimigo inimigo, Personagem personagem) {
         // Verificar se o baralho tem cartas suficientes
         if (baralho.getDeck().size() < compra) {
             System.out.println("Não há cartas suficientes para comprar.");
@@ -93,7 +90,7 @@ class CartaCompra extends Carta {
             baralho.getDeck().remove(i);
         }
 
-        System.out.println("Você usou " + nomeCarta + " e comprou " + compra + " carta(s).");
+        System.out.println(personagem.getNome() + ": Usa " + nomeCarta + " e comprou " + compra + " carta(s).");
     }
 
     @Override
