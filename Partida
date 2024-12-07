@@ -29,6 +29,7 @@ class Partida {
             // Verifica se o inimigo morreu após o ataque do jogador
             if (inimigo.getVida() == 0) {
                 System.out.println(inimigo.getNome() + " foi derrotado!");
+                baralho.adicionarCarta();
                 break;
             }
 
