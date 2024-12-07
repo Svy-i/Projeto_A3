@@ -9,17 +9,16 @@ class Baralho {
     private int idBaralho;
     private List<Carta> deck;
     private List<Carta> maos;
-
-    private ArrayList<Baralho> deckCompleto  = new ArrayList<Baralho>();
+    private List<Carta> adicionarCarta;
 
     // Construtor
     public Baralho(){
     }
     public Baralho(Personagem personagem) {
         this.personagem = personagem;
-        this.idBaralho = deckCompleto.size();
         this.deck = new ArrayList<>();
         this.maos = new ArrayList<>();
+        this.adicionarCarta = new ArrayList<>();
     }
 
     // Getters
@@ -98,6 +97,21 @@ class Baralho {
         }
     }
 
+    public void adicionarCarta(){
+        Scanner entrada = new Scanner(System.in);
+        System.out.println("Escolha uma carta para adicionar ao deck:");
+        for (int i = 0; i < 3; i++) {
+            adicionarCarta.add(deck.get(random.nextInt(20)));
+            System.out.println(i + ": " + adicionarCarta.get(i).nomeCarta + " - Custo: " + adicionarCarta.get(i).custo +
+                    " - " + adicionarCarta.get(i).descricao);
+        }
+        int indiceCarta = entrada.nextInt();
+        deck.add(adicionarCarta.get(indiceCarta));
+        adicionarCarta.remove(2);
+        adicionarCarta.remove(1);
+        adicionarCarta.remove(0);
+    }
+
     public void embaralharDeck() {
         int i = 0;
         // Embaralha as cartas do deck
@@ -134,8 +148,8 @@ class Baralho {
             if (indiceCarta >= 0 && indiceCarta < maos.size()) {
                 // Verifica se o jogador tem energia suficiente para usar a carta
                 if (energia >= maos.get(indiceCarta).custo) {
-                    energia -= maos.get(indiceCarta).custo;  // Deduz a energia
-                    maos.get(indiceCarta).usar(this, inimigo);  // Executa a ação da carta
+                    energia -= maos.get(indiceCarta).custo;  // Diminui a energia com base no custo da carta
+                    maos.get(indiceCarta).usar(this, inimigo, personagem);  // Executa a ação da carta
                     System.out.println("Carta " + maos.get(indiceCarta).nomeCarta + " usada com sucesso.");
                     deck.add(maos.get(indiceCarta));
                     maos.remove(indiceCarta);
