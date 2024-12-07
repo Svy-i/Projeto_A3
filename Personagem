@@ -1,7 +1,10 @@
 import java.util.Scanner;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 class Personagem {
     Scanner entrada = new Scanner(System.in);
+    ConexaoBD conexaoBD = new ConexaoBD();
     private int escolha;
     private int idPersonagem = 1;
     private String nomePersonagem;
@@ -10,15 +13,17 @@ class Personagem {
     private int energia;
     private int defesa;
 
+    private static ArrayList<Personagem> listaPersonagem = new ArrayList<Personagem>();
+
     public Personagem(){
     }
 
-    public Personagem(String nomePersonagem, String classe, int vidaPersonagem, int energia, int escolha){
+    public Personagem(String nomePersonagem, String classe, int vidaPersonagem, int energia){
+        this.idPersonagem = listaPersonagem.size();
         this.nomePersonagem = nomePersonagem;
         this.classe = classe;
         this.vidaPersonagem = vidaPersonagem;
         this.energia = energia;
-        this.escolha = escolha;
     }
 
     public void escolherPersonagem(){
@@ -41,6 +46,18 @@ class Personagem {
                 System.out.println("Escolha inválida. Tente novamente.");
             }
         } while (escolha < 1 || escolha > 2);
+        /*Personagem novoPersonagem = new Personagem(nomePersonagem, classe, vidaPersonagem, energia);
+        String sql = "INSERT INTO personagem (nomePersonagem, classe, vidaPersonagem, energia) " +
+                "VALUES ('" + nomePersonagem + "', '" + classe + "', '" + vidaPersonagem + "', '" +
+                energia + "');";
+
+        boolean salvo = ConexaoBD.salvar(sql);
+
+        if(salvo){
+            System.out.println("\nMédico cadastrado com sucesso!\n");
+        }else{
+            System.out.println("\nProblemas ao adicionar o médico!\n");
+        }*/
         System.out.println(nomePersonagem + "\n" + classe + "\n" + vidaPersonagem + " pontos de vida");
     }
 
@@ -69,9 +86,20 @@ class Personagem {
         System.out.println("Defesa aumentada para: " + this.defesa);
     }
 
-    public void recuperarVida(int cura){
-        this.vidaPersonagem += cura;
-        System.out.println(nomePersonagem + ", ganha " + cura + " pontos de vida");
+    public void recuperarVida(int cura) {
+        int vidaMaxima;
+        if (escolha == 1){
+            vidaMaxima = 100;
+        } else if (escolha == 2){
+            vidaMaxima = 50;
+        } else {
+            return;
+        }
+        if (vidaPersonagem + cura > vidaMaxima) {
+            cura = vidaMaxima - vidaPersonagem;
+        }
+        vidaPersonagem += cura;
+        System.out.println(nomePersonagem + " recuperou " + cura + " pontos de vida. Vida atual: " + vidaPersonagem);
     }
 
 
