@@ -22,7 +22,7 @@ class Main {
         System.out.println(personagem.getNome() + " enfrenta: " + inimigo.getNome());
         partida.realizarCombate();
 
-        inimigo.inimigoCogumelo();
+        /*inimigo.inimigoCogumelo();
         System.out.println(personagem.getNome() + " enfrenta: " + inimigo.getNome());
         partida.realizarCombate();
 
@@ -37,7 +37,7 @@ class Main {
         inimigo.inimigoChefe();
         System.out.println(personagem.getNome() + " enfrenta: " + inimigo.getNome());
         partida.realizarCombate();
-        jogador.concluirPartida();
+        jogador.concluirPartida();*/
         //System.out.println("Turno de " + personagem.getNome());
 
         //inimigo.inimigoBandido();
