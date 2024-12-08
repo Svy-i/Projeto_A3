@@ -1,41 +1,55 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 class Jogador {
     Scanner entrada = new Scanner(System.in);
+    ConexaoBD conexaoBD = new ConexaoBD();
     Personagem personagem = new Personagem();
-    private int idJogador;
+    private int idJogador = 0;
     private String nomeJogador;
     private int partidasConcluidas = 0;
 
-    private ArrayList <Jogador> listaJogador = new ArrayList<Jogador>();
+    ArrayList<String> alteracoes = new ArrayList<String>();
 
-    public Jogador(){
+    public Jogador() {
     }
 
-    public Jogador(String nomeJogador) {
-        this.idJogador = listaJogador.size();
+    public Jogador(String nomeJogador, int partidasConcluidas) {
         this.nomeJogador = nomeJogador;
         this.partidasConcluidas = partidasConcluidas;
     }
 
-    public void criarJogador(){
+    public void criarJogador() {
         System.out.println("Insira um nome de usuário");
         String nomeJogador = entrada.nextLine();
-        Jogador novoJogador = new Jogador(nomeJogador);
 
-        listaJogador.add(novoJogador);
-        System.out.println("Jogador cadastrado com sucesso!");
+        String sql = "INSERT INTO jogador (nomeJogador, partidasConcluidas) " +
+                "VALUES ('" + nomeJogador + "', '" + partidasConcluidas + "');";
 
-        System.out.println("Jogadores cadastrados:");
-        System.out.println(listaJogador);
-        System.out.print("\n\n\n");
+        boolean salvo = ConexaoBD.salvar(sql);
+
+        if (salvo) {
+            System.out.println("\nJogador cadastrado com sucesso!\n");
+        } else {
+            System.out.println("\nProblemas ao adicionar o jogador!\n");
+        }
 
     }
 
-    public void concluirPartida(){
+    public void concluirPartida() {
         partidasConcluidas += 1;
+
+        alteracoes.add("UPDATE jogador SET partidasConcluidas = " + partidasConcluidas + "WHERE idJogador = " + 2 + ";");
+
+        if (alteracoes.size() > 0) {
+            for (int i = 0; i < alteracoes.size(); i++) {
+                boolean dadosAlterados = ConexaoBD.atualizar(alteracoes.get(i));
+            }
+            // Define os parâmetros na consulta
+        }
     }
 
     public String getNomeJogador(){
