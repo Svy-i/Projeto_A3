@@ -8,6 +8,7 @@ class Main {
 
         //Criar perfil de jogador
         jogador.criarJogador();
+        jogador.concluirPartida();
 
         //Selecionar personagem
         personagem.escolherPersonagem();
@@ -18,9 +19,11 @@ class Main {
         //Inimigo inimigoCogumelo = new Inimigo("Mestre Fúngico",100);
 
         // Simulando o início de uma batalha
+        jogador.concluirPartida();
         inimigo.inimigoBandido();
         System.out.println(personagem.getNome() + " enfrenta: " + inimigo.getNome());
         partida.realizarCombate();
+        jogador.concluirPartida();
 
         /*inimigo.inimigoCogumelo();
         System.out.println(personagem.getNome() + " enfrenta: " + inimigo.getNome());
