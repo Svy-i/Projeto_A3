@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 class Baralho {
     Random random = new Random();
+    ConexaoBD conexaoBD = new ConexaoBD();
     Personagem personagem = new Personagem();
     private int idBaralho;
     private List<Carta> deck;
