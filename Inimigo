@@ -2,6 +2,7 @@ import java.util.Random;
 import java.util.ArrayList;
 class Inimigo {
     Random random = new Random();
+    ConexaoBD conexaoBD = new ConexaoBD();
     Personagem personagem = new Personagem();
     private int idInimigo;
     private String nomeInimigo;
@@ -37,6 +38,17 @@ class Inimigo {
         nomeInimigo = "Bandido";
         vidaInimigo = 50;
         ataqueInimigo = 6;
+
+        String sql = "INSERT INTO inimigo (nomeInimigo, vidaInimigo, ataqueInimigo) " +
+                "VALUES ('" + nomeInimigo + "', '" + vidaInimigo + "', '" + ataqueInimigo + "');";
+
+        boolean salvo = ConexaoBD.salvar(sql);
+
+        if(salvo){
+            System.out.println("\nInimigo cadastrado com sucesso!\n");
+        }else{
+            System.out.println("\nProblemas ao adicionar o inimigo!\n");
+        }
     }
 
     public void comportamentoBandido(){
@@ -54,6 +66,17 @@ class Inimigo {
         nomeInimigo = "Mestre Fúngico";
         vidaInimigo = 75;
         ataqueInimigo = 8;
+
+        String sql = "INSERT INTO inimigo (nomeInimigo, vidaInimigo, ataqueInimigo) " +
+                "VALUES ('" + nomeInimigo + "', '" + vidaInimigo + "', '" + ataqueInimigo + "');";
+
+        boolean salvo = ConexaoBD.salvar(sql);
+
+        if(salvo){
+            System.out.println("\nInimigo cadastrado com sucesso!\n");
+        }else{
+            System.out.println("\nProblemas ao adicionar o inimigo!\n");
+        }
     }
 
     public void comportamentoCogumelo(){
@@ -71,6 +94,17 @@ class Inimigo {
         nomeInimigo = "Gnoll";
         ataqueInimigo = 16;
         vidaInimigo = 30;
+
+        String sql = "INSERT INTO inimigo (nomeInimigo, vidaInimigo, ataqueInimigo) " +
+                "VALUES ('" + nomeInimigo + "', '" + vidaInimigo + "', '" + ataqueInimigo + "');";
+
+        boolean salvo = ConexaoBD.salvar(sql);
+
+        if(salvo){
+            System.out.println("\nInimigo cadastrado com sucesso!\n");
+        }else{
+            System.out.println("\nProblemas ao adicionar o inimigo!\n");
+        }
     }
 
     public void comportamentoGnoll(){
@@ -88,6 +122,17 @@ class Inimigo {
         nomeInimigo = "Bruxa do Pântano";
         ataqueInimigo = 12;
         vidaInimigo = 10;
+
+        String sql = "INSERT INTO inimigo (nomeInimigo, vidaInimigo, ataqueInimigo) " +
+                "VALUES ('" + nomeInimigo + "', '" + vidaInimigo + "', '" + ataqueInimigo + "');";
+
+        boolean salvo = ConexaoBD.salvar(sql);
+
+        if(salvo){
+            System.out.println("\nInimigo cadastrado com sucesso!\n");
+        }else{
+            System.out.println("\nProblemas ao adicionar o inimigo!\n");
+        }
     }
 
     public void comportamentoBruxa(){
@@ -105,6 +150,17 @@ class Inimigo {
         nomeInimigo = "Axolotl, Mestre da Chama Sombria";
         ataqueInimigo = 20;
         vidaInimigo = 200;
+
+        String sql = "INSERT INTO inimigo (nomeInimigo, vidaInimigo, ataqueInimigo) " +
+                "VALUES ('" + nomeInimigo + "', '" + vidaInimigo + "', '" + ataqueInimigo + "');";
+
+        boolean salvo = ConexaoBD.salvar(sql);
+
+        if(salvo){
+            System.out.println("\nInimigo cadastrado com sucesso!\n");
+        }else{
+            System.out.println("\nProblemas ao adicionar o inimigo!\n");
+        }
     }
 
     public void comportamentoChefe(){
