@@ -46,7 +46,7 @@ class Personagem {
                 System.out.println("Escolha inválida. Tente novamente.");
             }
         } while (escolha < 1 || escolha > 2);
-        /*Personagem novoPersonagem = new Personagem(nomePersonagem, classe, vidaPersonagem, energia);
+        Personagem novoPersonagem = new Personagem(nomePersonagem, classe, vidaPersonagem, energia);
         String sql = "INSERT INTO personagem (nomePersonagem, classe, vidaPersonagem, energia) " +
                 "VALUES ('" + nomePersonagem + "', '" + classe + "', '" + vidaPersonagem + "', '" +
                 energia + "');";
@@ -54,10 +54,10 @@ class Personagem {
         boolean salvo = ConexaoBD.salvar(sql);
 
         if(salvo){
-            System.out.println("\nMédico cadastrado com sucesso!\n");
+            System.out.println("\nPersonagem cadastrado com sucesso!\n");
         }else{
-            System.out.println("\nProblemas ao adicionar o médico!\n");
-        }*/
+            System.out.println("\nProblemas ao adicionar o personagem!\n");
+        }
         System.out.println(nomePersonagem + "\n" + classe + "\n" + vidaPersonagem + " pontos de vida");
     }
 
