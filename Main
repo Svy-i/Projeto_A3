@@ -53,23 +53,6 @@ class Main {
             return;
         }
         jogador.concluirPartida();
-        //System.out.println("Turno de " + personagem.getNome());
-
-        //inimigo.inimigoBandido();
-
-        // Embaralha o deck e pega as cartas para a mão
-        //jogador.embaralharDeck();
-
-        // O jogador joga uma carta
-        //jogador.usarCarta(0, inimigo);  // Jogando a carta de ataque "Golpe Rápido"
-
-        // Exibindo a vida do inimigo após o ataque
-        //System.out.println("Vida do " + inimigo.getNome() + ": " + inimigo.getVida());
-
-        // O jogador joga outra carta
-        //jogador.usarCarta(1, inimigo);  // Jogando a carta de defesa "Escudo de Ferro"
-
-
     }
 }
 /* Para simular a mudança de inimigos. Summona um metodo de inimigo e depois roda o combate. Quando o inimigo morre,
