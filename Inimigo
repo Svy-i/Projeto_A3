@@ -30,8 +30,16 @@ class Inimigo {
     }
 
     public void atacar(Personagem personagem) {
-        System.out.println(nomeInimigo + " ataca e causa " + ataqueInimigo + " de dano!");
-        personagem.receberDano(ataqueInimigo);
+        int randomizador = random.nextInt(4) + 1;
+        if (randomizador == 1 || randomizador == 2 || randomizador == 3){
+            System.out.println(nomeInimigo + " ataca e causa " + ataqueInimigo + " de dano!");
+            personagem.receberDano(ataqueInimigo);
+        } else if (randomizador == 4 ){
+            ataqueInimigo += 6;
+            System.out.println(nomeInimigo + " ganha ataque e fica com " + ataqueInimigo + " de ataque!");
+        } else {
+            System.out.println("Erro ao randomizar ataque");
+        }
     }
 
     public void inimigoBandido(){
@@ -51,23 +59,12 @@ class Inimigo {
         }
     }
 
-    public void comportamentoBandido(){
-        int randomizador = random.nextInt(7);
-        if (randomizador == 1 || randomizador == 2 || randomizador == 3){
-            personagem.receberDano(ataqueInimigo);
-        } else if (randomizador == 4 || randomizador == 5){
-            ataqueInimigo += 4;
-        } else if (randomizador == 6 ){
-            vidaInimigo += 6;
-        }
-    }
-
     public void inimigoCogumelo(){
         nomeInimigo = "Mestre Fúngico";
         vidaInimigo = 75;
         ataqueInimigo = 8;
 
-        String sql = "INSERT INTO inimigo (nomeInimigo, vidaInimigo, ataqueInimigo) " +
+        /*String sql = "INSERT INTO inimigo (nomeInimigo, vidaInimigo, ataqueInimigo) " +
                 "VALUES ('" + nomeInimigo + "', '" + vidaInimigo + "', '" + ataqueInimigo + "');";
 
         boolean salvo = ConexaoBD.salvar(sql);
@@ -76,18 +73,7 @@ class Inimigo {
             System.out.println("\nInimigo cadastrado com sucesso!\n");
         }else{
             System.out.println("\nProblemas ao adicionar o inimigo!\n");
-        }
-    }
-
-    public void comportamentoCogumelo(){
-        int randomizador = random.nextInt(7);
-        if (randomizador == 1 || randomizador == 2 || randomizador == 3){
-            personagem.receberDano(ataqueInimigo);
-        } else if (randomizador == 4 || randomizador == 5){
-            ataqueInimigo += 3;
-        } else if (randomizador == 6 ){
-            vidaInimigo += 12;
-        }
+        }*/
     }
 
     public void inimigoGnoll(){
@@ -95,7 +81,7 @@ class Inimigo {
         ataqueInimigo = 16;
         vidaInimigo = 30;
 
-        String sql = "INSERT INTO inimigo (nomeInimigo, vidaInimigo, ataqueInimigo) " +
+        /*String sql = "INSERT INTO inimigo (nomeInimigo, vidaInimigo, ataqueInimigo) " +
                 "VALUES ('" + nomeInimigo + "', '" + vidaInimigo + "', '" + ataqueInimigo + "');";
 
         boolean salvo = ConexaoBD.salvar(sql);
@@ -104,26 +90,15 @@ class Inimigo {
             System.out.println("\nInimigo cadastrado com sucesso!\n");
         }else{
             System.out.println("\nProblemas ao adicionar o inimigo!\n");
-        }
-    }
-
-    public void comportamentoGnoll(){
-        int randomizador = random.nextInt(7);
-        if (randomizador == 1 || randomizador == 2 || randomizador == 3){
-            personagem.receberDano(ataqueInimigo);
-        } else if (randomizador == 4 || randomizador == 5){
-            ataqueInimigo += 6;
-        } else if (randomizador == 6 ){
-            vidaInimigo += 8;
-        }
+        }*/
     }
 
     public void inimigoBruxa(){
         nomeInimigo = "Bruxa do Pântano";
         ataqueInimigo = 12;
-        vidaInimigo = 10;
+        vidaInimigo = 100;
 
-        String sql = "INSERT INTO inimigo (nomeInimigo, vidaInimigo, ataqueInimigo) " +
+        /*String sql = "INSERT INTO inimigo (nomeInimigo, vidaInimigo, ataqueInimigo) " +
                 "VALUES ('" + nomeInimigo + "', '" + vidaInimigo + "', '" + ataqueInimigo + "');";
 
         boolean salvo = ConexaoBD.salvar(sql);
@@ -132,18 +107,7 @@ class Inimigo {
             System.out.println("\nInimigo cadastrado com sucesso!\n");
         }else{
             System.out.println("\nProblemas ao adicionar o inimigo!\n");
-        }
-    }
-
-    public void comportamentoBruxa(){
-        int randomizador = random.nextInt(7);
-        if (randomizador == 1 || randomizador == 2 || randomizador == 3){
-            personagem.receberDano(ataqueInimigo);
-        } else if (randomizador == 4 || randomizador == 5){
-            ataqueInimigo += 4;
-        } else if (randomizador == 6 ){
-            vidaInimigo += 16;
-        }
+        }*/
     }
 
     public void inimigoChefe(){
@@ -151,7 +115,7 @@ class Inimigo {
         ataqueInimigo = 20;
         vidaInimigo = 200;
 
-        String sql = "INSERT INTO inimigo (nomeInimigo, vidaInimigo, ataqueInimigo) " +
+        /*String sql = "INSERT INTO inimigo (nomeInimigo, vidaInimigo, ataqueInimigo) " +
                 "VALUES ('" + nomeInimigo + "', '" + vidaInimigo + "', '" + ataqueInimigo + "');";
 
         boolean salvo = ConexaoBD.salvar(sql);
@@ -160,18 +124,7 @@ class Inimigo {
             System.out.println("\nInimigo cadastrado com sucesso!\n");
         }else{
             System.out.println("\nProblemas ao adicionar o inimigo!\n");
-        }
-    }
-
-    public void comportamentoChefe(){
-        int randomizador = random.nextInt(7);
-        if (randomizador == 1 || randomizador == 2 || randomizador == 3){
-            personagem.receberDano(ataqueInimigo);
-        } else if (randomizador == 4 || randomizador == 5){
-            ataqueInimigo += 5;
-        } else if (randomizador == 6 ){
-            vidaInimigo += 12;
-        }
+        }*/
     }
 
     public int getVida() {
