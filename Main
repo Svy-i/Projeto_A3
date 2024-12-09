@@ -8,39 +8,51 @@ class Main {
 
         //Criar perfil de jogador
         jogador.criarJogador();
-        jogador.concluirPartida();
 
         //Selecionar personagem
         personagem.escolherPersonagem();
         System.out.println("Começar partida de " + personagem.getNome());
         baralho.deck_Utilizado();
-
-        //Inimigo inimigoBandido = new Inimigo("Bandido", 50);
-        //Inimigo inimigoCogumelo = new Inimigo("Mestre Fúngico",100);
-
-        // Simulando o início de uma batalha
-        jogador.concluirPartida();
         inimigo.inimigoBandido();
         System.out.println(personagem.getNome() + " enfrenta: " + inimigo.getNome());
         partida.realizarCombate();
-        jogador.concluirPartida();
+        if (personagem.getVida() == 0) {
+            System.out.println(personagem.getNome() + " foi derrotado!");
+            return;
+        }
 
-        /*inimigo.inimigoCogumelo();
+        inimigo.inimigoCogumelo();
         System.out.println(personagem.getNome() + " enfrenta: " + inimigo.getNome());
         partida.realizarCombate();
+        if (personagem.getVida() == 0) {
+            System.out.println(personagem.getNome() + " foi derrotado!");
+            return;
+        }
 
         inimigo.inimigoGnoll();
         System.out.println(personagem.getNome() + " enfrenta: " + inimigo.getNome());
         partida.realizarCombate();
+        if (personagem.getVida() == 0) {
+            System.out.println(personagem.getNome() + " foi derrotado!");
+            return;
+        }
 
         inimigo.inimigoBruxa();
         System.out.println(personagem.getNome() + " enfrenta: " + inimigo.getNome());
         partida.realizarCombate();
+        if (personagem.getVida() == 0) {
+            System.out.println(personagem.getNome() + " foi derrotado!");
+            return;
+        }
 
         inimigo.inimigoChefe();
         System.out.println(personagem.getNome() + " enfrenta: " + inimigo.getNome());
         partida.realizarCombate();
-        jogador.concluirPartida();*/
+        if (personagem.getVida() == 0) {
+            System.out.println(personagem.getNome() + " foi derrotado!");
+            return;
+        }
+        jogador.concluirPartida();
         //System.out.println("Turno de " + personagem.getNome());
 
         //inimigo.inimigoBandido();
