@@ -1,0 +1,154 @@
+CREATE TABLE Jogador (
+    idJogador INT AUTO_INCREMENT PRIMARY KEY,
+    nomeJogador VARCHAR(100) NOT NULL,
+    partidasConcluidas INT DEFAULT 0
+);
+
+CREATE TABLE Personagem (
+    idPersonagem INT AUTO_INCREMENT PRIMARY KEY,
+    nomePersonagem VARCHAR(100) NOT NULL,
+    classe VARCHAR(50) NOT NULL,
+    vidaPersonagem INT NOT NULL,
+    energia INT NOT NULL
+);
+
+CREATE TABLE Inimigo (
+    idInimigo INT AUTO_INCREMENT PRIMARY KEY,
+    nomeInimigo VARCHAR(100) NOT NULL,
+    vidaInimigo INT NOT NULL,
+    ataqueInimigo INT NOT NULL
+);
+
+CREATE TABLE Carta (
+    idCarta INT AUTO_INCREMENT PRIMARY KEY,
+    nomeCarta VARCHAR(100) NOT NULL,
+    tipoCarta ENUM('Ataque', 'Defesa', 'Cura', 'Compra') NOT NULL,
+    custo INT NOT NULL,
+    dano INT DEFAULT 0,
+    defesa INT DEFAULT 0,
+    cura INT DEFAULT 0,
+    compra INT DEFAULT 0,
+    descricao VARCHAR(255)
+);
+
+CREATE TABLE Baralho (
+    idBaralho INT AUTO_INCREMENT PRIMARY KEY,
+    nomeBaralho VARCHAR(100) NOT NULL,
+    idCarta INT NOT NULL,
+    idPersonagem INT NOT NULL,
+    FOREIGN KEY (idCarta) REFERENCES Carta(idCarta),
+    FOREIGN KEY (idPersonagem) REFERENCES Personagem(idPersonagem)
+);
+
+CREATE TABLE Partida (
+    idPartida INT AUTO_INCREMENT PRIMARY KEY,
+    idJogador INT NOT NULL,
+    idPersonagem INT NOT NULL,
+    idInimigo INT NOT NULL,
+    idBaralho INT NOT NULL,
+    resultado ENUM('Vitoria', 'Derrota') DEFAULT NULL,
+    FOREIGN KEY (idJogador) REFERENCES Jogador(idJogador),
+    FOREIGN KEY (idPersonagem) REFERENCES Personagem(idPersonagem),
+    FOREIGN KEY (idInimigo) REFERENCES Inimigo(idInimigo),
+    FOREIGN KEY (idBaralho) REFERENCES Baralho(idBaralho)
+);
+
+INSERT INTO carta (nomeCarta, tipoCarta, custo, descricao, dano, defesa, cura, compra)
+VALUES 
+('Corte', 'Ataque', 1, 'Cause 6 de dano', 6, NULL, NULL, NULL),
+('Golpe Pesado', 'Ataque', 2, 'Causa 12 de dano', 12, NULL, NULL, NULL),
+('Desafiar', 'Ataque', 0, 'Cause 3 de dano', 3, NULL, NULL, NULL),
+('Sanguinário', 'Ataque', 3, 'Cause 20 de dano.', 20, NULL, NULL, NULL);
+
+INSERT INTO carta (nomeCarta, tipoCarta, custo, descricao, dano, defesa, cura, compra)
+VALUES 
+('Defender', 'Defesa', 1, 'Ganhe 5 de defesa neste turno', NULL, 5, NULL, NULL),
+('Armadura Colossal', 'Defesa', 2, 'Ganhe 12 de defesa.', NULL, 12, NULL, NULL);
+
+INSERT INTO carta (nomeCarta, tipoCarta, custo, descricao, dano, defesa, cura, compra)
+VALUES 
+('Separar Alma', 'Cura', 2, 'Cause 12 de dano. Ganhe 4 de vida.', 12, NULL, 4, NULL);
+
+INSERT INTO carta (nomeCarta, tipoCarta, custo, descricao, dano, defesa, cura, compra)
+VALUES 
+('Trance de Batalha', 'Compra', 0, 'Compre 2 cartas.', NULL, NULL, NULL, 2);
+
+INSERT INTO carta (nomeCarta, tipoCarta, custo, descricao, dano, defesa, cura, compra)
+VALUES 
+('Facada', 'Ataque', 1, 'Causa 6 de dano.', 6, NULL, NULL, NULL),
+('Corte sanguinário', 'Ataque', 2, 'Causa 8 de dano.', 8, NULL, NULL, NULL);
+
+INSERT INTO carta (nomeCarta, tipoCarta, custo, descricao, dano, defesa, cura, compra)
+VALUES
+('Desvanecer', 'Defesa', 1, 'Bloqueia 5 de dano.', NULL, 5, NULL, NULL);
+
+INSERT INTO carta (nomeCarta, tipoCarta, custo, descricao, dano, defesa, cura, compra)
+VALUES
+('Disparada', 'Compra', 1, 'Compre 4 cartas.', NULL, NULL, NULL, 4);
+
+INSERT INTO carta (nomeCarta, tipoCarta, custo, descricao, dano, defesa, cura, compra)
+VALUES
+('Beber Sangue', 'Cura', 0, 'Cause 3 de dano. Ganhe 2 de vida.', 3, NULL, 2, NULL),
+('Separar Alma', 'Cura', 0, 'Cause 3 de dano. Ganhe 2 de vida.', 3, NULL, 2, NULL);
+
+INSERT INTO personagem (nomePersonagem, classe, vidaPersonagem, energia)
+values
+('Loric', 'Guerreiro', 100, 3); 
+
+INSERT INTO personagem (nomePersonagem, classe, vidaPersonagem, energia)
+values
+('Fey', 'Assassino', 50, 4);
+
+INSERT INTO inimigo (nomeINimigo, vidaInimigo, ataqueInimigo)
+values
+('Bandido', 50, 6),
+('Mestre Fúngico', 75, 8),
+('Gnoll', 30, 16),
+('Bruxa do Pântano', 100, 12),
+('Axolotl, Mestre da Chama Sombria', 200, 20);
+
+INSERT INTO Baralho(nomeBaralho, idCarta, idPersonagem)
+values
+('Baralho de Guerreiro', 1, 1),
+('Baralho de Guerreiro', 1, 1),
+('Baralho de Guerreiro', 1, 1),
+('Baralho de Guerreiro', 1, 1),
+('Baralho de Guerreiro', 2, 1),
+('Baralho de Guerreiro', 2, 1),
+('Baralho de Guerreiro', 3, 1),
+('Baralho de Guerreiro', 4, 1),
+('Baralho de Guerreiro', 5, 1),
+('Baralho de Guerreiro', 5, 1),
+('Baralho de Guerreiro', 5, 1),
+('Baralho de Guerreiro', 5, 1),
+('Baralho de Guerreiro', 6, 1),
+('Baralho de Guerreiro', 6, 1),
+('Baralho de Guerreiro', 7, 1),
+('Baralho de Guerreiro', 7, 1),
+('Baralho de Guerreiro', 7, 1),
+('Baralho de Guerreiro', 8, 1),
+('Baralho de Guerreiro', 8, 1),
+('Baralho de Guerreiro', 8, 1);
+
+INSERT INTO baralho (nomeBaralho, idCarta, idPersonagem)
+values
+('Baralho de Assassino', 9, 2),
+('Baralho de Assassino', 9, 2),
+('Baralho de Assassino', 9, 2),
+('Baralho de Assassino', 9, 2),
+('Baralho de Assassino', 9, 2),
+('Baralho de Assassino', 9, 2),
+('Baralho de Assassino', 9, 2),
+('Baralho de Assassino', 9, 2),
+('Baralho de Assassino', 10, 2),
+('Baralho de Assassino', 11, 2),
+('Baralho de Assassino', 11, 2),
+('Baralho de Assassino', 11, 2),
+('Baralho de Assassino', 11, 2),
+('Baralho de Assassino', 12, 2),
+('Baralho de Assassino', 12, 2),
+('Baralho de Assassino', 13, 2),
+('Baralho de Assassino', 13, 2),
+('Baralho de Assassino', 13, 2),
+('Baralho de Assassino', 14, 2),
+('Baralho de Assassino', 14, 2);
