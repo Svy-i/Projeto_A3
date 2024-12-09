@@ -84,18 +84,6 @@ class Baralho {
             deck.add(new CartaCura("Separar Alma", 0, 3, 2, "Cause 3 de dano. Ganhe 2 de vida."));
 
         }
-
-        // Imprimindo a lista de cartas
-        for (int i = 0; i < deck.size(); i++) {
-            System.out.println(deck.get(i));
-        }
-
-    }
-
-    public void inicializarMao(){
-        for (int i = 0; i < 4; i++){
-            maos.add(deck.get(random.nextInt(20)));  // Pegando 4 cartas como exemplo
-        }
     }
 
     public void adicionarCarta(){
@@ -116,12 +104,11 @@ class Baralho {
     public void embaralharDeck() {
         int i = 0;
         // Embaralha as cartas do deck
-        // (Simplesmente adicionando as cartas ao deck para simplificação)
         maos.clear();
         int deckSize = deck.size();
         int numeroDeCartas = Math.min(4, deckSize);
         for (; i < numeroDeCartas; i++){
-            maos.add(deck.get(random.nextInt(20)));  // Pegando 4 cartas como exemplo
+            maos.add(deck.get(random.nextInt(deckSize)));  // Pegando 4 cartas como exemplo
         }
     }
     public void usarCarta(Inimigo inimigo) {
